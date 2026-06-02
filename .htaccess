@@ -1,0 +1,12 @@
+# Forzar revalidacion del HTML para que el navegador no sirva version vieja tras editar.
+# (assets como imagenes/CSS siguen cacheando normal)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+# LiteSpeed: no cachear las paginas HTML a nivel servidor (sitio estatico, se edita seguido)
+<IfModule LiteSpeed>
+  CacheDisable public /
+</IfModule>
+DirectoryIndex index.html
